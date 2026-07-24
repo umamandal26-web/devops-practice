@@ -1,0 +1,21 @@
+import pandas as pd
+
+# Example input data
+# Replace this with your actual dataset path
+sales_data = pd.DataFrame({
+    'Employee': ['Alice', 'Bob', 'Charlie', 'David', 'Eva', 'Frank', 'Grace', 'Henry'],
+    'Department': ['Sales', 'Sales', 'Sales', 'HR', 'HR', 'Marketing', 'Marketing', 'Marketing'],
+    'Sales': [1200, 1800, 1500, 900, 1100, 2000, 1700, 1900]
+})
+
+# Sort by department and sales descending
+result = (
+    sales_data.sort_values(['Department', 'Sales'], ascending=[True, False])
+    .groupby('Department', as_index=False)
+    .head(3)
+)
+
+print(result[['Department', 'Employee', 'Sales']])
+
+# If you want to save the result:
+# result.to_csv('top3_employees_per_department.csv', index=False)
